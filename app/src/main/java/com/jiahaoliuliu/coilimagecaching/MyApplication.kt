@@ -23,7 +23,7 @@ class MyApplication: Application(), SingletonImageLoader.Factory {
             .diskCachePolicy(CachePolicy.ENABLED)
             .diskCache {
                 DiskCache.Builder()
-                    .maxSizePercent(0.03)
+                    .maxSizePercent(0.05)
                     .directory(cacheDir)
                     .build()
             }
