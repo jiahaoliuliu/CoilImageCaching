@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.imageLoader
+import coil3.memory.MemoryCache
 import com.jiahaoliuliu.coilimagecaching.ui.theme.CoilImageCachingTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,6 +48,8 @@ class MainActivity : ComponentActivity() {
                             onClick = {
                                 imageLoader.diskCache?.clear()
                                 imageLoader.memoryCache?.clear()
+//                                imageLoader.diskCache?.remove("MyImageKey")
+//                                imageLoader.memoryCache?.remove(MemoryCache.Key("MyImageKey"))
                             }
                         ) {
                             Text("Clear cache")
