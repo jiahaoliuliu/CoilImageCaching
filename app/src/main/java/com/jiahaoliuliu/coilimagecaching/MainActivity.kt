@@ -2,10 +2,13 @@ package com.jiahaoliuliu.coilimagecaching
 
 import android.R.attr.contentDescription
 import android.os.Bundle
+import android.os.Debug
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -78,19 +81,49 @@ class MainActivity : ComponentActivity() {
                             error = painterResource(R.drawable.coillogo)
                         )
                         Spacer(Modifier.height(16.dp))
-                        Button(
-                            onClick = {
-                                imageLoader.diskCache?.clear()
-                                imageLoader.memoryCache?.clear()
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceAround,
+                        ) {
+                            Button(
+                                onClick = {
+                                    imageLoader.diskCache?.clear()
+                                    imageLoader.memoryCache?.clear()
 //                                imageLoader.diskCache?.remove("MyImageKey")
 //                                imageLoader.memoryCache?.remove(MemoryCache.Key("MyImageKey"))
+                                }
+                            ) {
+                                Text("Clear cache")
                             }
-                        ) {
-                            Text("Clear cache")
+                            Button(
+                                onClick = {
+                                    printOutMemory()
+                                }
+                            ) {
+                                Text("Print out memory")
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun printOutMemory() {
+        val memoryInfo = Debug.MemoryInfo().also(Debug::getMemoryInfo)
+        val javaHeap = memoryInfo.getMemoryStat("summary.java-heap")
+        println("Summary. Java Heap: $javaHeap")
+        val nativeHeap = memoryInfo.getMemoryStat("summary.native-heap")
+        println("Summary. Native Heap: $nativeHeap")
+        val code = memoryInfo.getMemoryStat("summary.code")
+        println("Summary. Code: $code")
+        val stack = memoryInfo.getMemoryStat("summary.stack")
+        println("Summary. Stack: $stack")
+        val graphics = memoryInfo.getMemoryStat("summary.graphics")
+        println("Summary. Graphics: $graphics")
+        val privateOther = memoryInfo.getMemoryStat("summary.private-other")
+        println("Summary. Private Other: $privateOther")
+        val system = memoryInfo.getMemoryStat("summary.system")
+        println("Summary. System: $system")
     }
 }
