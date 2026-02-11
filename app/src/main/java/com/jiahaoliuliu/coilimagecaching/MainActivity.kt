@@ -111,6 +111,9 @@ class MainActivity : ComponentActivity() {
 
     private fun printOutMemory() {
         val memoryInfo = Debug.MemoryInfo().also(Debug::getMemoryInfo)
+        println("MemoryInfo -----------")
+        println(memoryInfo.memoryStats)
+        println("Each fields -----------")
         val javaHeap = memoryInfo.getMemoryStat("summary.java-heap")
         println("Summary. Java Heap: $javaHeap")
         val nativeHeap = memoryInfo.getMemoryStat("summary.native-heap")
@@ -129,5 +132,23 @@ class MainActivity : ComponentActivity() {
         println("Summary. Total PSS: $totalPss")
         val totalSwap = memoryInfo.getMemoryStat("summary.total-swap")
         println("Summary. Total Swap: $totalSwap")
+        println("------------------------")
+        println("Total PSS: ${memoryInfo.totalPss}")
+        println("Total Private Clean: ${memoryInfo.totalPrivateClean}")
+        println("Total Private Dirty: ${memoryInfo.totalPrivateDirty}")
+        println("Total Shared Clean: ${memoryInfo.totalSharedClean}")
+        println("Total Shared Dirty: ${memoryInfo.totalSharedDirty}")
+        println("Total Swapped PSS: ${memoryInfo.totalSwappablePss}")
+        println("------------------------")
+        println("DalvikPSS: ${memoryInfo.dalvikPss}")
+        println("DalvikPrivateDirty ${memoryInfo.dalvikPrivateDirty}")
+        println("DalvikSharedDirty ${memoryInfo.dalvikSharedDirty}")
+        println("NativePSS: ${memoryInfo.nativePss}")
+        println("NativePrivateDirty: ${memoryInfo.nativePrivateDirty}")
+        println("NativeSharedDirty: ${memoryInfo.nativeSharedDirty}")
+        println("OtherPSS: ${memoryInfo.otherPss}")
+        println("OtherPrivateDirty: ${memoryInfo.otherPrivateDirty}")
+        println("OtherSharedDirty: ${memoryInfo.otherSharedDirty}")
+        println("------------------------")
     }
 }
