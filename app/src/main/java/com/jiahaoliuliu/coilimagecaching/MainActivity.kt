@@ -125,5 +125,9 @@ class MainActivity : ComponentActivity() {
         println("Summary. Private Other: $privateOther")
         val system = memoryInfo.getMemoryStat("summary.system")
         println("Summary. System: $system")
+        val totalPss = memoryInfo.getMemoryStat("summary.total-pss")
+        println("Summary. Total PSS: $totalPss")
+        val totalSwap = memoryInfo.getMemoryStat("summary.total-swap")
+        println("Summary. Total Swap: $totalSwap")
     }
 }
