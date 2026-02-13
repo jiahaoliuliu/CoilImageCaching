@@ -1,6 +1,7 @@
 package com.jiahaoliuliu.coilimagecaching
 
 import android.app.Application
+import android.graphics.Bitmap
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
@@ -8,6 +9,7 @@ import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
 import coil3.request.CachePolicy
+import coil3.request.bitmapConfig
 import coil3.util.DebugLogger
 
 class MyApplication: Application(), SingletonImageLoader.Factory {
@@ -27,6 +29,7 @@ class MyApplication: Application(), SingletonImageLoader.Factory {
                     .directory(cacheDir)
                     .build()
             }
+            .bitmapConfig(Bitmap.Config.RGB_565)
             .logger(DebugLogger())
             .build()
     }
