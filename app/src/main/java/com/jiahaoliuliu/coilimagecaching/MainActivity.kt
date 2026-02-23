@@ -1,5 +1,6 @@
 package com.jiahaoliuliu.coilimagecaching
 
+import android.R.attr.bitmap
 import android.os.Bundle
 import android.os.Debug
 import androidx.activity.ComponentActivity
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -32,32 +34,30 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val imageUrl = "https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house@2x.jpg"
         setContent {
             CoilImageCachingTheme {
                 Scaffold { contentPadding ->
                     Column(
                         modifier = Modifier
                             .padding(contentPadding)
+                            .padding(16.dp)
                             .fillMaxSize()
                     ) {
-                        Box (
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(128.dp)
-                        ) {
-                            AsyncImage(
-                                model = ImageRequest
-                                    .Builder(LocalContext.current)
-                                    .data(imageUrl)
-                                    .crossfade(true)
-                                    .build(),
-                                contentDescription = null,
-                                placeholder = painterResource(R.drawable.house_cropped),
-                                error = painterResource(R.drawable.house_cropped),
-                                contentScale = ContentScale.Crop,
-                            )
-                        }
+                        ItemRow(
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Coffee.jpg"
+                        )
+                        ItemRow(
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Cookies.jpg"
+                        )
+                        ItemRow(
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Pastel%20de%20Belen.jpg"
+                        )
+                        ItemRow(
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Sagrada%20familia.jpg"
+                        )
+                        ItemRow(
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Snow.jpg"
+                        )
                         Spacer(Modifier.height(16.dp))
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -128,5 +128,44 @@ class MainActivity : ComponentActivity() {
         println("OtherPrivateDirty: ${memoryInfo.otherPrivateDirty}")
         println("OtherSharedDirty: ${memoryInfo.otherSharedDirty}")
         println("------------------------")
+    }
+}
+
+//import android.graphics.Bitmap
+//import android.os.Build
+//
+//fun getBitmapAllocationSize(bitmap: Bitmap): Long {
+////    return if (Build.VERSION.SDK_INT >= Build.VERSION_MAX_ALLOWED) {
+//        // getAllocationByteCount() returns the size of the memory
+//        // allocated to hold this bitmap's pixels.
+//        return bitmap.allocationByteCount.toLong()
+////    } else {
+////        // Fallback for older APIs (Pre-KitKat)
+////        bitmap.byteCount.toLong()
+////    }
+//}
+//
+@Composable
+private fun ItemRow(
+    modifier: Modifier = Modifier,
+    imageUrl: String,
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp, bottom = 8.dp)
+            .height(128.dp)
+    ) {
+        AsyncImage(
+            model = ImageRequest
+                .Builder(LocalContext.current)
+                .data(imageUrl)
+                .crossfade(true)
+                .build(),
+            contentDescription = null,
+            placeholder = painterResource(R.drawable.coillogo),
+            error = painterResource(R.drawable.coillogo),
+            contentScale = ContentScale.Crop,
+        )
     }
 }
