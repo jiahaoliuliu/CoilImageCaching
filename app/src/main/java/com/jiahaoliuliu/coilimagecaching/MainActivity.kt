@@ -43,20 +43,26 @@ class MainActivity : ComponentActivity() {
                             .padding(16.dp)
                             .fillMaxSize()
                     ) {
+                        val contentScale = ContentScale.Crop
                         ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Coffee.jpg"
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Coffee.jpg",
+                            contentScale = contentScale,
                         )
                         ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Cookies.jpg"
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Cookies.jpg",
+                            contentScale = contentScale,
                         )
                         ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Pastel%20de%20Belen.jpg"
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Pastel%20de%20Belen.jpg",
+                            contentScale = contentScale,
                         )
                         ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Sagrada%20familia.jpg"
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Sagrada%20familia.jpg",
+                            contentScale = contentScale,
                         )
                         ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Snow.jpg"
+                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Snow.jpg",
+                            contentScale = contentScale,
                         )
                         Spacer(Modifier.height(16.dp))
                         Row(
@@ -149,6 +155,7 @@ class MainActivity : ComponentActivity() {
 private fun ItemRow(
     modifier: Modifier = Modifier,
     imageUrl: String,
+    contentScale: ContentScale,
 ) {
     Box(
         modifier = modifier
@@ -165,7 +172,7 @@ private fun ItemRow(
             contentDescription = null,
             placeholder = painterResource(R.drawable.coillogo),
             error = painterResource(R.drawable.coillogo),
-            contentScale = ContentScale.Crop,
+            contentScale = contentScale,
         )
     }
 }
