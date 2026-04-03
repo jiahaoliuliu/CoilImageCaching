@@ -1,6 +1,5 @@
 package com.jiahaoliuliu.coilimagecaching
 
-import android.R.attr.bitmap
 import android.os.Bundle
 import android.os.Debug
 import androidx.activity.ComponentActivity
@@ -34,6 +33,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val imagesList = ImagesProvider.provideOriginalImages()
+        val contentScale = ContentScale.Crop
         setContent {
             CoilImageCachingTheme {
                 Scaffold { contentPadding ->
@@ -43,27 +44,12 @@ class MainActivity : ComponentActivity() {
                             .padding(16.dp)
                             .fillMaxSize()
                     ) {
-                        val contentScale = ContentScale.Crop
-                        ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Coffee.jpg",
-                            contentScale = contentScale,
-                        )
-                        ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Cookies.jpg",
-                            contentScale = contentScale,
-                        )
-                        ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Pastel%20de%20Belen.jpg",
-                            contentScale = contentScale,
-                        )
-                        ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Sagrada%20familia.jpg",
-                            contentScale = contentScale,
-                        )
-                        ItemRow(
-                            imageUrl = "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/main/images/Snow.jpg",
-                            contentScale = contentScale,
-                        )
+                        imagesList.forEach { imageUrl ->
+                            ItemRow(
+                                imageUrl = imageUrl,
+                                contentScale = contentScale,
+                            )
+                        }
                         Spacer(Modifier.height(16.dp))
                         Row(
                             modifier = Modifier.fillMaxWidth(),
