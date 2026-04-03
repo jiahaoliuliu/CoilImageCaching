@@ -33,8 +33,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-//        val imagesList = ImagesProvider.provideOriginalImages()
-        val imagesList = ImagesProvider.provideCroppedImages()
+        val imagesList = ImagesProvider.provideOriginalImages()
         val contentScale = ContentScale.Crop
         setContent {
             CoilImageCachingTheme {
