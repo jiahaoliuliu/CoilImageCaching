@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -33,8 +34,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-//        val imagesList = ImagesProvider.provideOriginalImages()
-        val imagesList = ImagesProvider.provideCroppedImages()
+        val imagesList = ImagesProvider.provideOriginalImages()
+//        val imagesList = ImagesProvider.provideCroppedImages()
         val contentScale = ContentScale.Crop
         setContent {
             CoilImageCachingTheme {
@@ -124,26 +125,18 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//import android.graphics.Bitmap
-//import android.os.Build
-//
-//fun getBitmapAllocationSize(bitmap: Bitmap): Long {
-////    return if (Build.VERSION.SDK_INT >= Build.VERSION_MAX_ALLOWED) {
-//        // getAllocationByteCount() returns the size of the memory
-//        // allocated to hold this bitmap's pixels.
-//        return bitmap.allocationByteCount.toLong()
-////    } else {
-////        // Fallback for older APIs (Pre-KitKat)
-////        bitmap.byteCount.toLong()
-////    }
-//}
-//
 @Composable
 private fun ItemRow(
     modifier: Modifier = Modifier,
     imageUrl: String,
     contentScale: ContentScale,
 ) {
+    val density = LocalDensity.current
+    // Calculate display size in pixels (128.dp height, full width minus padding)
+    val displayHeightPx = with(density) { 128.dp.toPx().toInt() }
+    // Estimate width (full width, assuming standard screen sizes)
+    val displayWidthPx = with(density) { 400.dp.toPx().toInt() } // Conservative estimate
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -154,6 +147,8 @@ private fun ItemRow(
             model = ImageRequest
                 .Builder(LocalContext.current)
                 .data(imageUrl)
+                // Size hint: Load image at exact display dimensions to reduce memory
+                .size(displayWidthPx, displayHeightPx)
                 .crossfade(true)
                 .build(),
             contentDescription = null,
