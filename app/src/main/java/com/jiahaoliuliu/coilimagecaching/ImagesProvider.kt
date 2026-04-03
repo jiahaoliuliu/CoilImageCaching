@@ -15,7 +15,7 @@ object ImagesProvider {
             "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/memoryOptimization/imagesCropped/Coffee.jpg",
             "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/memoryOptimization/imagesCropped/Cookies.jpg",
             "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/memoryOptimization/imagesCropped/Pastel%20de%20Belen.jpg",
-            "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/memoryOptimization/imagesCropped/Sagrada%20familiaResized.jpg",
+            "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/memoryOptimization/imagesCropped/Sagrada%20familiaResized2.jpg",
             "https://raw.githubusercontent.com/jiahaoliuliu/CoilImageCaching/refs/heads/memoryOptimization/imagesCropped/Snow.jpg",
         )
 }
