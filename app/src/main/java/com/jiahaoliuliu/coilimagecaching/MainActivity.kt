@@ -34,9 +34,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val imagesList = ImagesProvider.provideOriginalImages()
-//        val imagesList = ImagesProvider.provideCroppedImages()
-        val contentScale = ContentScale.Crop
+//        val imagesList = ImagesProvider.provideOriginalImages()
+        val imagesList = ImagesProvider.provideCroppedImages()
+        val contentScale = ContentScale.Fit
         setContent {
             CoilImageCachingTheme {
                 Scaffold { contentPadding ->
